@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout - Toy Tales</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+background-color: #f0e7f4;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+header {
+background: #d5006d;
+color: white;
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 100%;
+padding: 15px 20px;
+position: fixed;
+top: 0;
+left: 0;
+z-index: 1000;
+}
+
+header h1 {
+margin: 0;
+}
+
+.icon-container {
+display: flex;
+gap: 15px;
+}
+
+.checkout-container {
+max-width: 600px;
+padding: 30px;
+background: #ffffff;
+border-radius: 10px;
+box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+width: 90%;
+margin-top: 80px;
+}
+
+h2, h3 {
+text-align: center;
+color: #4a148c;
+}
+
+label {
+display: block;
+margin: 10px 0 5px;
+color: #4a148c;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+select {
+width: 100%;
+padding: 12px;
+margin: 5px 0 15px;
+border: 1px solid #d5006d;
+border-radius: 4px;
+}
+
+button {
+width: 100%;
+padding: 12px;
+background-color: #d5006d;
+color: white;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+font-size: 16px;
+transition: background-color 0.3s;
+}
+
+button:hover {
+background-color: #8e24aa;
+}
+
+.summary {
+margin-top: 20px;
+}
+
+.item {
+display: flex;
+justify-content: space-between;
+padding: 10px 0;
+border-bottom: 1px solid #dcdcdc;
+}
+
+footer {
+text-align: center;
+padding: 1em 0;
+background: #4a148c;
+color: white;
+position: relative;
+bottom: 0;
+width: 100%;
+margin-top: auto;
+}
+
+.payment-options {
+display: none;
+margin-top: 15px;
+padding: 10px; /* Reduced padding */
+border-radius: 8px;
+border: 2px solid #d5006d;
+max-width: 100%; /* Ensure it doesn't exceed container width */
+box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+.option {
+padding: 8px; /* Reduced padding */
+margin: 6px 0; /* Reduced margin */
+border: 1px solid #d5006d;
+border-radius: 5px;
+background-color: #f9f3f9;
+max-width: calc(100% - 16px); /* Adjust width for the border */
+box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+.option p {
+margin: 0;
+}
+</style>
+</head>
+<body>
+<header>
+<h1>Toy Tales</h1>
+<div class="icon-container">
+<a href="login.html"><i class="fas fa-user"></i></a>
+<a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+<a href="#"><i class="fas fa-shopping-cart"></i></a>
+</div>
+</header>
+
+<div class="checkout-container">
+<h2>Checkout</h2>
+
+<form id="checkout-form">
+<h3>Shipping Information</h3>
+<label for="fullName">Full Name</label>
+<input type="text" id="fullName" name="fullName" required>
+
+<label for="email">Email</label>
+<input type="email" id="email" name="email" required>
+
+<label for="address">Shipping Address</label>
+<input type="text" id="address" name="address" required>
+
+<label for="phone">Phone Number</label>
+<input type="tel" id="phone" name="phone" required>
+
+<h3>Payment Information</h3>
+<label for="paymentMode">Select Payment Mode</label>
+<select id="paymentMode" name="paymentMode" required>
+<option value="googlePay">Google Pay</option>
+<option value="cod">Cash on Delivery</option>
+<option value="creditCard">Credit/Debit Card</option>
+<option value="upi">UPI</option>
+</select>
+
+<div class="payment-options" id="paymentOptions">
+<div class="option" id="codOption">
+<p>Cash on Delivery selected.</p>
+</div>
+<div class="option" id="cardOption" style="display: none;">
+<label for="cardNumber">Card Number</label>
+<input type="text" id="cardNumber" name="cardNumber" pattern="\d{16}" title="Please enter a valid 16-digit card number" required>
+
+<label for="expiryDate">Expiry Date (MM/YY)</label>
+<input type="text" id="expiryDate" name="expiryDate" required>
+
+<label for="cvv">CVV</label>
+<input type="text" id="cvv" name="cvv" pattern="\d{3}" title="Please enter a valid 3-digit CVV" required>
+</div>
+<div class="option" id="upiOption" style="display: none;">
+<label for="upiId">UPI ID</label>
+<input type="text" id="upiId" name="upiId" required>
+</div>
+<div class="option" id="googlePayOption" style="display: none;">
+<label for="googlePayEmail">Google Pay Email/Phone</label>
+<input type="text" id="googlePayEmail" name="googlePayEmail" required>
+</div>
+</div>
+
+<button type="submit">Complete Purchase</button>
+</form>
+
+<div class="summary">
+<h3>Order Summary</h3>
+<div class="item">
+<span>Toy 1</span>
+<span>$20.00</span>
+</div>
+<div class="item">
+<span>Toy 2</span>
+<span>$15.00</span>
+</div>
+<div class="item">
+<span>Total</span>
+<span>$35.00</span>
+</div>
+</div>
+</div>
+
+<footer>
+<p>&copy; 2024 Toy Tales. All rights reserved.</p>
+</footer>
+
+<script>
+document.getElementById('paymentMode').addEventListener('change', function() {
+const paymentOptions = document.getElementById('paymentOptions');
+const cardOption = document.getElementById('cardOption');
+const codOption = document.getElementById('codOption');
+const upiOption = document.getElementById('upiOption');
+const googlePayOption = document.getElementById('googlePayOption');
+
+// Hide all options initially
+paymentOptions.style.display = 'block';
+cardOption.style.display = 'none';
+codOption.style.display = 'none';
+upiOption.style.display = 'none';
+googlePayOption.style.display = 'none';
+
+// Show the selected payment option
+if (this.value === 'cod') {
+codOption.style.display = 'block';
+} else if (this.value === 'creditCard') {
+cardOption.style.display = 'block';
+} else if (this.value === 'upi') {
+upiOption.style.display = 'block';
+} else if (this.value === 'googlePay') {
+googlePayOption.style.display = 'block';
+}
+});
+
+document.getElementById('checkout-form').addEventListener('submit', (e) => {
+e.preventDefault();
+const selectedPayment = document.getElementById('paymentMode').value;
+let message;
+
+if (selectedPayment === 'cod') {
+message = "Thank you! Your order will be delivered cash on delivery.";
+} else {
+message = "Thank you for your purchase!";
+}
+
+alert(message);
+});
+</script>
+</body>
+</html>
